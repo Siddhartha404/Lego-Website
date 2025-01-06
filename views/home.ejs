@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lego Collection</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css" />
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<body class="bg-gray-100">
+    <%- include('partials/navbar', { page: '/' }) %>
+    <div class="container mx-auto p-4">
+        <div class="text-center py-12">
+            <h1 class="text-4xl font-bold mb-4">Explore Our Lego Collection</h1>
+            <a href="/lego/sets" class="bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-600 transition duration-200">View All Sets</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+            <!-- Loop through sets and create a card for each -->
+            <% sets.forEach(set => { %>
+                <div class="bg-white rounded-md shadow-md p-4 flex flex-col justify-between">
+                    <img src="<%= set.img_url %>" alt="<%= set.name %>" class="h-48 w-full object-cover rounded-md mb-2">
+                    <h2 class="text-xl font-semibold"><%= set.name %></h2>
+                    <p class="text-gray-500">Released in <%= set.year %></p>
+                    <a href="/lego/sets/<%= set.set_num %>" class="border border-blue-500 text-blue-500 py-2 px-4 rounded-md shadow-md hover:bg-blue-50 hover:text-blue-600 transition duration-200 mt-2">View Details</a>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>
